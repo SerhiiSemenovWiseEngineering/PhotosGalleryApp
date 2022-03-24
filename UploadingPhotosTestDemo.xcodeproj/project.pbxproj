@@ -22,6 +22,7 @@
 		8F46D88927EC85C4009C719D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D88827EC85C4009C719D /* FirebaseStorage */; };
 		8F46D88B27EC85C4009C719D /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D88A27EC85C4009C719D /* FirebaseStorageCombine-Community */; };
 		8F46D88D27EC85C4009C719D /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D88C27EC85C4009C719D /* FirebaseStorageSwift-Beta */; };
+		8F46D89127EC8B08009C719D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D89027EC8B08009C719D /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		8F46D87927EC7D1B009C719D /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		8F46D87B27EC7D55009C719D /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
 		8F46D87D27EC84C8009C719D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		8F46D89027EC8B08009C719D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 		8F46D87227EC7C8D009C719D /* Stories */ = {
 			isa = PBXGroup;
 			children = (
+				8F46D88E27EC8AE8009C719D /* Auth */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -173,6 +176,22 @@
 			children = (
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		8F46D88E27EC8AE8009C719D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				8F46D88F27EC8AF2009C719D /* Login */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		8F46D88F27EC8AF2009C719D /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				8F46D89027EC8B08009C719D /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +281,7 @@
 				8F46D87A27EC7D1B009C719D /* NibLoadable.swift in Sources */,
 				8F46D85927EC7B7C009C719D /* AppDelegate.swift in Sources */,
 				8F46D87C27EC7D55009C719D /* XibView.swift in Sources */,
+				8F46D89127EC8B08009C719D /* LoginViewController.swift in Sources */,
 				8F46D85B27EC7B7C009C719D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
