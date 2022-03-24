@@ -37,6 +37,7 @@
 		8F46D8AD27ECB22E009C719D /* RxTest-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D8AC27ECB22E009C719D /* RxTest-Dynamic */; };
 		8F46D8B027ECB307009C719D /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D8AF27ECB307009C719D /* PKHUD */; };
 		8F46D8B227ECB391009C719D /* LoginViewModelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */; };
+		8F46D8B427ECB5C4009C719D /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B327ECB5C4009C719D /* Alertable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		8F46D89527EC9BA3009C719D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8F46D89727ECAB1F009C719D /* String+trimm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trimm.swift"; sourceTree = "<group>"; };
 		8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelConstants.swift; sourceTree = "<group>"; };
+		8F46D8B327ECB5C4009C719D /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				8F46D87927EC7D1B009C719D /* NibLoadable.swift */,
+				8F46D8B327ECB5C4009C719D /* Alertable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F46D8B427ECB5C4009C719D /* Alertable.swift in Sources */,
 				8F46D89827ECAB1F009C719D /* String+trimm.swift in Sources */,
 				8F46D8B227ECB391009C719D /* LoginViewModelConstants.swift in Sources */,
 				8F46D87A27EC7D1B009C719D /* NibLoadable.swift in Sources */,
