@@ -31,6 +31,7 @@ class LoginViewController: UIViewController, Alertable {
     // MARK: - UI Configuration
     private func configureUI() {
         
+        configureScreen()
         loginWithEmail()
         navigationBar()
         configureLoginButton()
@@ -47,8 +48,7 @@ class LoginViewController: UIViewController, Alertable {
                 .bind { [weak self] (succes, user, error) in
                     guard let self = self else { return }
                     if succes {
-                        // Dissmis the login screen
-                        print("Logged In")
+                        self.dismiss(animated: true)
                     } else {
                         self.displayMessage("Error", msg: error?.localizedDescription, handler: nil)
                     }
@@ -58,10 +58,15 @@ class LoginViewController: UIViewController, Alertable {
     
     private func navigationBar() {
         title = "Login"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configureLoginButton() {
         signInButton.layer.cornerRadius = 0.02 * signInButton.bounds.size.width
+    }
+    
+    private func configureScreen() {
+        isModalInPresentation = true
     }
     
     //MARK: - Configure VM
@@ -91,13 +96,15 @@ class LoginViewController: UIViewController, Alertable {
     }
     
     @IBAction func logOut(_ sender: UIButton) {
-        logoutUser()
+        logoutUser(completion: nil)
     }
 }
 
-extension LoginViewController {
-    func logoutUser() {
+extension UIViewController {
+    func logoutUser(completion: (() -> Void)?) {
         do { try Auth.auth().signOut() }
         catch { print("already logged out") }
+        
+        completion?()
     }
 }
