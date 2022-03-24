@@ -24,8 +24,8 @@ class LoginViewController: UIViewController, Alertable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.configureUI()
-        self.configureVM()
+        configureUI()
+        configureVM()
     }
     
     // MARK: - UI Configuration
@@ -38,23 +38,23 @@ class LoginViewController: UIViewController, Alertable {
     }
     
     // MARK: Functions
-        private func loginWithEmail() {
-            loginViewModel.signInWithEmail(email: emailTextField.rx.text.asObservable(),
-                                          password: passwordTextField.rx.text.asObservable(),
-                                          didPressSignInButton: signInButton.rx.tap.asObservable())
-            
-            loginViewModel.isSignedInViaEmail
-                .skip(1)
-                .bind { [weak self] (succes, user, error) in
-                    guard let self = self else { return }
-                    if succes {
-                        self.dismiss(animated: true)
-                    } else {
-                        self.displayMessage("Error", msg: error?.localizedDescription, handler: nil)
-                    }
+    private func loginWithEmail() {
+        loginViewModel.signInWithEmail(email: emailTextField.rx.text.asObservable(),
+                                       password: passwordTextField.rx.text.asObservable(),
+                                       didPressSignInButton: signInButton.rx.tap.asObservable())
+        
+        loginViewModel.isSignedInViaEmail
+            .skip(1)
+            .bind { [weak self] (succes, user, error) in
+                guard let self = self else { return }
+                if succes {
+                    self.dismiss(animated: true)
+                } else {
+                    self.displayMessage("Error", msg: error?.localizedDescription, handler: nil)
                 }
-                .disposed(by: disposeBag)
-        }
+            }
+            .disposed(by: disposeBag)
+    }
     
     private func navigationBar() {
         title = "Login"
@@ -69,7 +69,7 @@ class LoginViewController: UIViewController, Alertable {
         isModalInPresentation = true
     }
     
-    //MARK: - Configure VM
+    // MARK: - Configure VM
     private func configureVM() {
         loginViewModel.enableButton?
             .bind { [weak self] isEnabled in

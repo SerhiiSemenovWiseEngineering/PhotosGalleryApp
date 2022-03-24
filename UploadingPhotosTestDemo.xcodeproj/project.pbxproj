@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		8F1C68E227ECC1FF00BD85C9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8F1C68E127ECC1FF00BD85C9 /* RxCocoa */; };
 		8F1C68E427ECC1FF00BD85C9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F1C68E327ECC1FF00BD85C9 /* RxSwift */; };
-		8F1C68E627ECCD2400BD85C9 /* UploadingPhotoStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F1C68E527ECCD2400BD85C9 /* UploadingPhotoStoryboard.storyboard */; };
-		8F1C68E927ECCDC800BD85C9 /* UploadingPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68E827ECCDC800BD85C9 /* UploadingPhotosViewController.swift */; };
+		8F1C68E627ECCD2400BD85C9 /* PhotoGalleryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F1C68E527ECCD2400BD85C9 /* PhotoGalleryViewController.storyboard */; };
+		8F1C68E927ECCDC800BD85C9 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68E827ECCDC800BD85C9 /* PhotoGalleryViewController.swift */; };
 		8F1C68EC27ECD0FE00BD85C9 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68EB27ECD0FE00BD85C9 /* AuthRouter.swift */; };
 		8F1C68EE27ECD14900BD85C9 /* UIViewController+identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68ED27ECD14900BD85C9 /* UIViewController+identifier.swift */; };
 		8F1C68F027ECD94600BD85C9 /* FIRFirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68EF27ECD94600BD85C9 /* FIRFirebaseAuthService.swift */; };
@@ -39,8 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8F1C68E527ECCD2400BD85C9 /* UploadingPhotoStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UploadingPhotoStoryboard.storyboard; sourceTree = "<group>"; };
-		8F1C68E827ECCDC800BD85C9 /* UploadingPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadingPhotosViewController.swift; sourceTree = "<group>"; };
+		8F1C68E527ECCD2400BD85C9 /* PhotoGalleryViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoGalleryViewController.storyboard; sourceTree = "<group>"; };
+		8F1C68E827ECCDC800BD85C9 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		8F1C68EB27ECD0FE00BD85C9 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		8F1C68ED27ECD14900BD85C9 /* UIViewController+identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifier.swift"; sourceTree = "<group>"; };
 		8F1C68EF27ECD94600BD85C9 /* FIRFirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRFirebaseAuthService.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		8F1C68E727ECCDA000BD85C9 /* UploadingPhotos */ = {
 			isa = PBXGroup;
 			children = (
-				8F1C68E827ECCDC800BD85C9 /* UploadingPhotosViewController.swift */,
+				8F1C68E827ECCDC800BD85C9 /* PhotoGalleryViewController.swift */,
 			);
 			path = UploadingPhotos;
 			sourceTree = "<group>";
@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				8F46D85E27EC7B7C009C719D /* Auth.storyboard */,
-				8F1C68E527ECCD2400BD85C9 /* UploadingPhotoStoryboard.storyboard */,
+				8F1C68E527ECCD2400BD85C9 /* PhotoGalleryViewController.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -329,7 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F1C68E627ECCD2400BD85C9 /* UploadingPhotoStoryboard.storyboard in Resources */,
+				8F1C68E627ECCD2400BD85C9 /* PhotoGalleryViewController.storyboard in Resources */,
 				8F46D86527EC7B7F009C719D /* LaunchScreen.storyboard in Resources */,
 				8F46D87E27EC84C8009C719D /* GoogleService-Info.plist in Resources */,
 				8F46D86227EC7B7F009C719D /* Assets.xcassets in Resources */,
@@ -357,7 +357,7 @@
 				8F46D85B27EC7B7C009C719D /* SceneDelegate.swift in Sources */,
 				8F1C68EC27ECD0FE00BD85C9 /* AuthRouter.swift in Sources */,
 				8F46D89627EC9BA3009C719D /* LoginViewModel.swift in Sources */,
-				8F1C68E927ECCDC800BD85C9 /* UploadingPhotosViewController.swift in Sources */,
+				8F1C68E927ECCDC800BD85C9 /* PhotoGalleryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +508,7 @@
 				INFOPLIST_FILE = UploadingPhotosTestDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = UploadingPhotoStoryboard;
+				INFOPLIST_KEY_UIMainStoryboardFile = PhotoGalleryViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -535,7 +535,7 @@
 				INFOPLIST_FILE = UploadingPhotosTestDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = UploadingPhotoStoryboard;
+				INFOPLIST_KEY_UIMainStoryboardFile = PhotoGalleryViewController;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
