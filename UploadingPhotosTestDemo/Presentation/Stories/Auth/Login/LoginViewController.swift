@@ -94,17 +94,4 @@ class LoginViewController: UIViewController, Alertable {
             }
             .disposed(by: disposeBag)
     }
-    
-    @IBAction func logOut(_ sender: UIButton) {
-        logoutUser(completion: nil)
-    }
-}
-
-extension UIViewController {
-    func logoutUser(completion: (() -> Void)?) {
-        do { try Auth.auth().signOut() }
-        catch { print("already logged out") }
-        
-        completion?()
-    }
 }

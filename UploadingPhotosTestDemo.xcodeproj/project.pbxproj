@@ -13,6 +13,8 @@
 		8F1C68E927ECCDC800BD85C9 /* UploadingPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68E827ECCDC800BD85C9 /* UploadingPhotosViewController.swift */; };
 		8F1C68EC27ECD0FE00BD85C9 /* AuthRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68EB27ECD0FE00BD85C9 /* AuthRouter.swift */; };
 		8F1C68EE27ECD14900BD85C9 /* UIViewController+identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68ED27ECD14900BD85C9 /* UIViewController+identifier.swift */; };
+		8F1C68F027ECD94600BD85C9 /* FIRFirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68EF27ECD94600BD85C9 /* FIRFirebaseAuthService.swift */; };
+		8F1C68F227ECDA8900BD85C9 /* FIRFirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68F127ECDA8900BD85C9 /* FIRFirebaseStorageService.swift */; };
 		8F46D85927EC7B7C009C719D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D85827EC7B7C009C719D /* AppDelegate.swift */; };
 		8F46D85B27EC7B7C009C719D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D85A27EC7B7C009C719D /* SceneDelegate.swift */; };
 		8F46D86027EC7B7C009C719D /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F46D85E27EC7B7C009C719D /* Auth.storyboard */; };
@@ -41,6 +43,8 @@
 		8F1C68E827ECCDC800BD85C9 /* UploadingPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadingPhotosViewController.swift; sourceTree = "<group>"; };
 		8F1C68EB27ECD0FE00BD85C9 /* AuthRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRouter.swift; sourceTree = "<group>"; };
 		8F1C68ED27ECD14900BD85C9 /* UIViewController+identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifier.swift"; sourceTree = "<group>"; };
+		8F1C68EF27ECD94600BD85C9 /* FIRFirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRFirebaseAuthService.swift; sourceTree = "<group>"; };
+		8F1C68F127ECDA8900BD85C9 /* FIRFirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRFirebaseStorageService.swift; sourceTree = "<group>"; };
 		8F46D85527EC7B7C009C719D /* UploadingPhotosTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UploadingPhotosTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F46D85827EC7B7C009C719D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F46D85A27EC7B7C009C719D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 		8F46D87027EC7C6A009C719D /* Firebase Data */ = {
 			isa = PBXGroup;
 			children = (
+				8F1C68EF27ECD94600BD85C9 /* FIRFirebaseAuthService.swift */,
+				8F1C68F127ECDA8900BD85C9 /* FIRFirebaseStorageService.swift */,
 			);
 			path = "Firebase Data";
 			sourceTree = "<group>";
@@ -342,9 +348,11 @@
 				8F46D89827ECAB1F009C719D /* String+trimm.swift in Sources */,
 				8F46D8B227ECB391009C719D /* LoginViewModelConstants.swift in Sources */,
 				8F46D87A27EC7D1B009C719D /* NibLoadable.swift in Sources */,
+				8F1C68F027ECD94600BD85C9 /* FIRFirebaseAuthService.swift in Sources */,
 				8F46D85927EC7B7C009C719D /* AppDelegate.swift in Sources */,
 				8F1C68EE27ECD14900BD85C9 /* UIViewController+identifier.swift in Sources */,
 				8F46D87C27EC7D55009C719D /* XibView.swift in Sources */,
+				8F1C68F227ECDA8900BD85C9 /* FIRFirebaseStorageService.swift in Sources */,
 				8F46D89127EC8B08009C719D /* LoginViewController.swift in Sources */,
 				8F46D85B27EC7B7C009C719D /* SceneDelegate.swift in Sources */,
 				8F1C68EC27ECD0FE00BD85C9 /* AuthRouter.swift in Sources */,
