@@ -31,6 +31,6 @@ class UploadingPhotosViewController: UIViewController {
     }
     
     @IBAction func logOut(_ sender: UIButton) {
-        FIRFirebaseAuthService.logoutUser()
+        FIRFirebaseAuthService.shared.logoutUser()
     }
 }

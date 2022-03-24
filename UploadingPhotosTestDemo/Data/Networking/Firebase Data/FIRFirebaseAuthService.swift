@@ -10,7 +10,10 @@ import FirebaseAuth
 
 struct FIRFirebaseAuthService {
     
-    static func logoutUser() {
+    private init() {}
+    static let shared = FIRFirebaseAuthService()
+    
+    func logoutUser() {
         do { try Auth.auth().signOut() }
         catch { print("already logged out") }
     }

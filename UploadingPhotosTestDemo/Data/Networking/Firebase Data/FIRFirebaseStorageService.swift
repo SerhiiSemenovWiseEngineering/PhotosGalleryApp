@@ -8,7 +8,7 @@
 import Foundation
 import Firebase
 
-class FIRFirestoreStorageService {
+struct FIRFirestoreStorageService {
     
     private init() {}
     static let shared = FIRFirestoreStorageService()
