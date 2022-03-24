@@ -17,5 +17,27 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         title = "Login"
+        
+        self.loginTextField.delegate = self
+        self.passwordTextField.delegate = self
+        
+        signInButton.addTarget(self, action: #selector(signInButtonDidPressed), for: .touchDown)
+    }
+    
+    @objc func signInButtonDidPressed() {
+        print("Loged in")
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == loginTextField {
+            
+        }
+        
+        if textField == passwordTextField {
+            
+        }
     }
 }
