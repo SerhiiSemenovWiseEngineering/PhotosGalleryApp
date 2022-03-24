@@ -47,12 +47,22 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign In"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ljj-MT-Blw">
+                                <rect key="frame" x="170" y="807" width="74" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Log out"/>
+                                <connections>
+                                    <action selector="logOut:" destination="8M0-fZ-SdY" eventType="touchUpInside" id="kP2-M6-RUN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XeH-wC-nd8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="XeH-wC-nd8" firstAttribute="trailing" secondItem="Jgd-dH-w5o" secondAttribute="trailing" constant="20" id="D5t-bs-6WE"/>
                             <constraint firstItem="Jgd-dH-w5o" firstAttribute="top" secondItem="MG4-Nh-3WF" secondAttribute="bottom" constant="22" id="I3g-3l-8PK"/>
+                            <constraint firstItem="Ljj-MT-Blw" firstAttribute="leading" secondItem="XeH-wC-nd8" secondAttribute="leading" constant="170" id="JKw-J9-DIT"/>
+                            <constraint firstItem="XeH-wC-nd8" firstAttribute="bottom" secondItem="Ljj-MT-Blw" secondAttribute="bottom" constant="24" id="QvV-bp-Zcb"/>
                             <constraint firstItem="XeH-wC-nd8" firstAttribute="trailing" secondItem="MG4-Nh-3WF" secondAttribute="trailing" constant="20" id="YgE-Fy-y1y"/>
                             <constraint firstItem="MG4-Nh-3WF" firstAttribute="top" secondItem="3RA-tE-6j8" secondAttribute="bottom" constant="22" id="aPO-h3-SWp"/>
                             <constraint firstItem="MG4-Nh-3WF" firstAttribute="leading" secondItem="XeH-wC-nd8" secondAttribute="leading" constant="20" id="bt6-lP-9CB"/>
@@ -60,6 +70,7 @@
                             <constraint firstItem="3RA-tE-6j8" firstAttribute="leading" secondItem="XeH-wC-nd8" secondAttribute="leading" constant="20" id="r0R-kV-xPG"/>
                             <constraint firstItem="XeH-wC-nd8" firstAttribute="trailing" secondItem="3RA-tE-6j8" secondAttribute="trailing" constant="20" id="tSP-Wt-7Aa"/>
                             <constraint firstItem="3RA-tE-6j8" firstAttribute="centerY" secondItem="XeH-wC-nd8" secondAttribute="centerY" constant="-180" id="xJt-yl-rn0"/>
+                            <constraint firstItem="XeH-wC-nd8" firstAttribute="trailing" secondItem="Ljj-MT-Blw" secondAttribute="trailing" constant="170" id="xrw-GT-bVM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jEK-7n-UJa"/>
