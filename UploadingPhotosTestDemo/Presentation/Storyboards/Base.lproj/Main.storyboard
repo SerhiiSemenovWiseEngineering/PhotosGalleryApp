@@ -40,15 +40,19 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MG4-Nh-3WF">
                                 <rect key="frame" x="20" y="334" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jgd-dH-w5o">
-                                <rect key="frame" x="20" y="390" width="374" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Sign In"/>
+                                <rect key="frame" x="20" y="390" width="374" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EIf-Y1-hij"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign In">
+                                    <color key="baseBackgroundColor" systemColor="linkColor"/>
+                                </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ljj-MT-Blw">
-                                <rect key="frame" x="170" y="807" width="74" height="31"/>
+                                <rect key="frame" x="170.5" y="807" width="73" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Log out"/>
                                 <connections>
@@ -61,21 +65,20 @@
                         <constraints>
                             <constraint firstItem="XeH-wC-nd8" firstAttribute="trailing" secondItem="Jgd-dH-w5o" secondAttribute="trailing" constant="20" id="D5t-bs-6WE"/>
                             <constraint firstItem="Jgd-dH-w5o" firstAttribute="top" secondItem="MG4-Nh-3WF" secondAttribute="bottom" constant="22" id="I3g-3l-8PK"/>
-                            <constraint firstItem="Ljj-MT-Blw" firstAttribute="leading" secondItem="XeH-wC-nd8" secondAttribute="leading" constant="170" id="JKw-J9-DIT"/>
                             <constraint firstItem="XeH-wC-nd8" firstAttribute="bottom" secondItem="Ljj-MT-Blw" secondAttribute="bottom" constant="24" id="QvV-bp-Zcb"/>
                             <constraint firstItem="XeH-wC-nd8" firstAttribute="trailing" secondItem="MG4-Nh-3WF" secondAttribute="trailing" constant="20" id="YgE-Fy-y1y"/>
                             <constraint firstItem="MG4-Nh-3WF" firstAttribute="top" secondItem="3RA-tE-6j8" secondAttribute="bottom" constant="22" id="aPO-h3-SWp"/>
                             <constraint firstItem="MG4-Nh-3WF" firstAttribute="leading" secondItem="XeH-wC-nd8" secondAttribute="leading" constant="20" id="bt6-lP-9CB"/>
                             <constraint firstItem="Jgd-dH-w5o" firstAttribute="leading" secondItem="XeH-wC-nd8" secondAttribute="leading" constant="20" id="otl-t3-2Jn"/>
                             <constraint firstItem="3RA-tE-6j8" firstAttribute="leading" secondItem="XeH-wC-nd8" secondAttribute="leading" constant="20" id="r0R-kV-xPG"/>
+                            <constraint firstItem="Ljj-MT-Blw" firstAttribute="centerX" secondItem="XeH-wC-nd8" secondAttribute="centerX" id="skt-4o-KTD"/>
                             <constraint firstItem="XeH-wC-nd8" firstAttribute="trailing" secondItem="3RA-tE-6j8" secondAttribute="trailing" constant="20" id="tSP-Wt-7Aa"/>
                             <constraint firstItem="3RA-tE-6j8" firstAttribute="centerY" secondItem="XeH-wC-nd8" secondAttribute="centerY" constant="-180" id="xJt-yl-rn0"/>
-                            <constraint firstItem="XeH-wC-nd8" firstAttribute="trailing" secondItem="Ljj-MT-Blw" secondAttribute="trailing" constant="170" id="xrw-GT-bVM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jEK-7n-UJa"/>
                     <connections>
-                        <outlet property="loginTextField" destination="3RA-tE-6j8" id="CLw-VY-1ae"/>
+                        <outlet property="emailTextField" destination="3RA-tE-6j8" id="CLw-VY-1ae"/>
                         <outlet property="passwordTextField" destination="MG4-Nh-3WF" id="LfT-j7-mFH"/>
                         <outlet property="signInButton" destination="Jgd-dH-w5o" id="tAq-Nf-Xyk"/>
                     </connections>
@@ -86,6 +89,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

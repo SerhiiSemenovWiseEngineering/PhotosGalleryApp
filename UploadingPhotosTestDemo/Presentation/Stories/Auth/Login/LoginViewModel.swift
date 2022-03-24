@@ -15,7 +15,7 @@ class LoginViewModel {
     
     // MARK: rx properties
     var isSignedInViaEmail: BehaviorRelay<(Bool, AuthDataResult?, Error?)> = BehaviorRelay(value: (false, nil, nil))
-    var loginPswdErrorHandling: BehaviorRelay<String> = BehaviorRelay(value: "")
+    var loginErrorHandling: BehaviorRelay<String> = BehaviorRelay(value: "")
     var enableButton: Observable<Bool>?
     var disposeBag = DisposeBag()
     
@@ -23,11 +23,11 @@ class LoginViewModel {
     init() {}
         
     // MARK: Functions
-    func signInWithEmail(login: Observable<String?>,
+    func signInWithEmail(email: Observable<String?>,
                          password: Observable<String?>,
                          didPressSignInButton: Observable<Void>) {
         
-        let userInputs = Observable.combineLatest(login, password) { (login, password) -> (String, String) in
+        let userInputs = Observable.combineLatest(email, password) { (login, password) -> (String, String) in
 
             guard let unwrapedLogin = login?.trimm(),
                   let unwrapedPassword = password else {
@@ -37,7 +37,7 @@ class LoginViewModel {
             return (unwrapedLogin, unwrapedPassword)
         }
 
-        let loginValidation = login
+        let loginValidation = email
             .map({!$0!.isEmpty})
             .share(replay: 1)
 
@@ -51,38 +51,39 @@ class LoginViewModel {
 
         didPressSignInButton
             .withLatestFrom(userInputs)
-            .subscribe(onNext: { (login, password) in
+            .bind { [weak self] (login, password) in
+                guard let self = self else { return }
                 HUD.show(.progress)
 
                 guard login.count > 0 else {
-                    self.loginPswdErrorHandling.accept("You havent tiped email")
+                    self.loginErrorHandling.accept("You havent tiped email")
                     HUD.hide()
                     return
                 }
 
                 guard login.contains("@") else {
                     HUD.hide()
-                    self.loginPswdErrorHandling.accept("You forgot to tipe \"@\"")
+                    self.loginErrorHandling.accept("You forgot to tipe \"@\"")
 
                     return
                 }
 
                 guard login.range(of: LoginViewModelConstants.regexpEmail, options: .regularExpression, range: nil, locale: nil) != nil else {
                     HUD.hide()
-                    self.loginPswdErrorHandling.accept("The email typed incorrectly")
+                    self.loginErrorHandling.accept("The email typed incorrectly")
 
                     return
                 }
 
                 guard password.range(of: LoginViewModelConstants.regexPswd, options: .regularExpression) != nil else {
                     HUD.hide()
-                    self.loginPswdErrorHandling.accept("Your password should be min 6 max 24 symbols")
+                    self.loginErrorHandling.accept("Your password should be min 6 max 24 symbols")
 
                     return
                 }
 
                 guard password.count > 0 else {
-                    self.loginPswdErrorHandling.accept("You havent tiped password")
+                    self.loginErrorHandling.accept("You havent tiped password")
                     HUD.hide()
                     return
                 }
@@ -91,7 +92,7 @@ class LoginViewModel {
                     HUD.hide()
                     self.isSignedInViaEmail.accept((user != nil, user, error))
                 }
-            })
+            }
             .disposed(by: disposeBag)
     }
 }
