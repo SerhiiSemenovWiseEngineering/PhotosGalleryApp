@@ -15,6 +15,8 @@
 		8F1C68EE27ECD14900BD85C9 /* UIViewController+identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68ED27ECD14900BD85C9 /* UIViewController+identifier.swift */; };
 		8F1C68F027ECD94600BD85C9 /* FIRFirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68EF27ECD94600BD85C9 /* FIRFirebaseAuthService.swift */; };
 		8F1C68F227ECDA8900BD85C9 /* FIRFirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68F127ECDA8900BD85C9 /* FIRFirebaseStorageService.swift */; };
+		8F1C68FA27ECF85C00BD85C9 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1C68F827ECF85C00BD85C9 /* GalleryCollectionViewCell.swift */; };
+		8F1C68FB27ECF85C00BD85C9 /* GalleryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F1C68F927ECF85C00BD85C9 /* GalleryCollectionViewCell.xib */; };
 		8F46D85927EC7B7C009C719D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D85827EC7B7C009C719D /* AppDelegate.swift */; };
 		8F46D85B27EC7B7C009C719D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D85A27EC7B7C009C719D /* SceneDelegate.swift */; };
 		8F46D86027EC7B7C009C719D /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F46D85E27EC7B7C009C719D /* Auth.storyboard */; };
@@ -36,6 +38,7 @@
 		8F46D8B027ECB307009C719D /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D8AF27ECB307009C719D /* PKHUD */; };
 		8F46D8B227ECB391009C719D /* LoginViewModelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */; };
 		8F46D8B427ECB5C4009C719D /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B327ECB5C4009C719D /* Alertable.swift */; };
+		8FB7D4B327EDBF0800B0417D /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7D4B227EDBF0800B0417D /* ColumnFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,8 @@
 		8F1C68ED27ECD14900BD85C9 /* UIViewController+identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+identifier.swift"; sourceTree = "<group>"; };
 		8F1C68EF27ECD94600BD85C9 /* FIRFirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRFirebaseAuthService.swift; sourceTree = "<group>"; };
 		8F1C68F127ECDA8900BD85C9 /* FIRFirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRFirebaseStorageService.swift; sourceTree = "<group>"; };
+		8F1C68F827ECF85C00BD85C9 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F1C68F927ECF85C00BD85C9 /* GalleryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryCollectionViewCell.xib; sourceTree = "<group>"; };
 		8F46D85527EC7B7C009C719D /* UploadingPhotosTestDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UploadingPhotosTestDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F46D85827EC7B7C009C719D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F46D85A27EC7B7C009C719D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +65,7 @@
 		8F46D89727ECAB1F009C719D /* String+trimm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trimm.swift"; sourceTree = "<group>"; };
 		8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelConstants.swift; sourceTree = "<group>"; };
 		8F46D8B327ECB5C4009C719D /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		8FB7D4B227EDBF0800B0417D /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,23 @@
 				8F1C68EB27ECD0FE00BD85C9 /* AuthRouter.swift */,
 			);
 			path = Routers;
+			sourceTree = "<group>";
+		};
+		8F1C68F327ECF20D00BD85C9 /* GaleryCell */ = {
+			isa = PBXGroup;
+			children = (
+				8F1C68F827ECF85C00BD85C9 /* GalleryCollectionViewCell.swift */,
+				8F1C68F927ECF85C00BD85C9 /* GalleryCollectionViewCell.xib */,
+			);
+			path = GaleryCell;
+			sourceTree = "<group>";
+		};
+		8F1C68FC27ECF93900BD85C9 /* XibView */ = {
+			isa = PBXGroup;
+			children = (
+				8F46D87B27EC7D55009C719D /* XibView.swift */,
+			);
+			path = XibView;
 			sourceTree = "<group>";
 		};
 		8F46D84C27EC7B7C009C719D = {
@@ -196,7 +219,9 @@
 		8F46D87527EC7CC5009C719D /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
-				8F46D87B27EC7D55009C719D /* XibView.swift */,
+				8FB7D4B127EDBEEA00B0417D /* Column Flow Layouts */,
+				8F1C68F327ECF20D00BD85C9 /* GaleryCell */,
+				8F1C68FC27ECF93900BD85C9 /* XibView */,
 			);
 			path = CustomUI;
 			sourceTree = "<group>";
@@ -252,6 +277,14 @@
 				8F1C68ED27ECD14900BD85C9 /* UIViewController+identifier.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8FB7D4B127EDBEEA00B0417D /* Column Flow Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				8FB7D4B227EDBF0800B0417D /* ColumnFlowLayout.swift */,
+			);
+			path = "Column Flow Layouts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F1C68E627ECCD2400BD85C9 /* PhotoGalleryViewController.storyboard in Resources */,
+				8F1C68FB27ECF85C00BD85C9 /* GalleryCollectionViewCell.xib in Resources */,
 				8F46D86527EC7B7F009C719D /* LaunchScreen.storyboard in Resources */,
 				8F46D87E27EC84C8009C719D /* GoogleService-Info.plist in Resources */,
 				8F46D86227EC7B7F009C719D /* Assets.xcassets in Resources */,
@@ -345,9 +379,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F46D8B427ECB5C4009C719D /* Alertable.swift in Sources */,
+				8F1C68FA27ECF85C00BD85C9 /* GalleryCollectionViewCell.swift in Sources */,
 				8F46D89827ECAB1F009C719D /* String+trimm.swift in Sources */,
 				8F46D8B227ECB391009C719D /* LoginViewModelConstants.swift in Sources */,
 				8F46D87A27EC7D1B009C719D /* NibLoadable.swift in Sources */,
+				8FB7D4B327EDBF0800B0417D /* ColumnFlowLayout.swift in Sources */,
 				8F1C68F027ECD94600BD85C9 /* FIRFirebaseAuthService.swift in Sources */,
 				8F46D85927EC7B7C009C719D /* AppDelegate.swift in Sources */,
 				8F1C68EE27ECD14900BD85C9 /* UIViewController+identifier.swift in Sources */,

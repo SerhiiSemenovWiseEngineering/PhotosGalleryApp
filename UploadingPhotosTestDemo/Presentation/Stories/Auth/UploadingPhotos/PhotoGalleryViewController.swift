@@ -10,6 +10,13 @@ import FirebaseAuth
 
 class PhotoGalleryViewController: UIViewController, Alertable {
     
+    let columnLayout = ColumnFlowLayout(
+        cellsPerRow: 2,
+        minimumInteritemSpacing: 10,
+        minimumLineSpacing: 10,
+        sectionInset: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    )
+    
     // MARK: - IBOutlets
     @IBOutlet weak var photosCollectionView: UICollectionView!
     
@@ -40,7 +47,7 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     // MARK: - UI Configuration
     private func configureUI() {
         
-        configureScreen()
+        configureCollectionView()
         navigationBar()
         configureDelegates()
     }
@@ -53,11 +60,13 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     // MARK: Functions
     private func configureDelegates() {
         photosCollectionView.delegate = self
-        photosCollectionView.delegate = self
+        photosCollectionView.dataSource = self
     }
     
-    private func configureScreen() {
-        
+    private func configureCollectionView() {
+        photosCollectionView.collectionViewLayout = columnLayout
+        photosCollectionView.contentInsetAdjustmentBehavior = .always
+        photosCollectionView.register(GalleryCollectionViewCell.nib, forCellWithReuseIdentifier: GalleryCollectionViewCell.reuseIdentifier)
     }
     
     private func navigationBar() {
@@ -98,12 +107,43 @@ class PhotoGalleryViewController: UIViewController, Alertable {
 extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.largeContentImage = UIImage(named: "CatImage")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionViewCell", for: indexPath) as? GalleryCollectionViewCell else { return UICollectionViewCell() }
+        
+        let image = resizeImage(image: UIImage(named: "CatImage")!, targetSize: CGSize(width: 100, height: 100))
+        cell.mainImageView.contentMode = .scaleAspectFit
+        cell.mainImageView.image = image
+        cell.nameLabel.text = "My home cat"
+        
         return cell
+    }
+    
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / size.width
+        let heightRatio = targetSize.height / size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(origin: .zero, size: newSize)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
 }
