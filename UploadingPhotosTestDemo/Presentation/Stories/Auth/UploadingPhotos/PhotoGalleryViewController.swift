@@ -14,6 +14,7 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     @IBOutlet weak var photosCollectionView: UICollectionView!
     
     // MARK: - Properties
+    var images: [UIImage] = []
     var handler: AuthStateDidChangeListenerHandle?
     let columnLayout = ColumnFlowLayout(
         cellsPerRow: 2,
@@ -79,14 +80,14 @@ class PhotoGalleryViewController: UIViewController, Alertable {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let gearImage = UIImage(systemName: "gear")
-        let editImage = UIImage(systemName: "plus")
+        let addImage = UIImage(systemName: "plus")
         let uploadImage = UIImage(systemName: "icloud.and.arrow.up")
         
         let systemButton = UIBarButtonItem(image: gearImage,  style: .plain, target: self, action: #selector(didTapSystemButton(sender:)))
-        let editButton   = UIBarButtonItem(image: editImage,  style: .plain, target: self, action: #selector(didTapEditButton(sender:)))
+        let addButton   = UIBarButtonItem(image: addImage,  style: .plain, target: self, action: #selector(didTapAddButton(sender:)))
         let uploadButton  = UIBarButtonItem(image: uploadImage,  style: .plain, target: self, action: #selector(didTapUploadButton(sender:)))
         
-        navigationItem.rightBarButtonItems = [uploadButton, editButton]
+        navigationItem.rightBarButtonItems = [uploadButton, addButton]
         navigationItem.leftBarButtonItems = [systemButton]
     }
     
@@ -100,8 +101,9 @@ class PhotoGalleryViewController: UIViewController, Alertable {
         displayMessage("Preferences", msg: nil, actions: alertAction, cancelAction, handler: nil)
     }
     
-    @objc func didTapEditButton(sender: AnyObject) {
-        print("Edit")
+    @objc func didTapAddButton(sender: AnyObject) {
+        ImagePicker.shared.presentPickerViewController(from: self)
+        ImagePicker.shared.delegate = self
     }
     
     @objc func didTapUploadButton(sender: AnyObject) {
@@ -112,18 +114,30 @@ class PhotoGalleryViewController: UIViewController, Alertable {
 extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionViewCell", for: indexPath) as? GalleryCollectionViewCell else { return UICollectionViewCell() }
         
-        guard let catImage = UIImage(named: "CatImage") else { return UICollectionViewCell() }
-        let image = catImage.resizeImage(targetSize: CGSize(width: 100, height: 100))
+        let image = images[indexPath.row]
+//        let image = catImage.resizeImage(targetSize: CGSize(width: 100, height: 100))
         cell.mainImageView.contentMode = .scaleAspectFit
         cell.mainImageView.image = image
         cell.nameLabel.text = "My home cat"
         
         return cell
+    }
+}
+
+extension PhotoGalleryViewController: ImagePickerDelegate {
+    
+    func didSelect(image: UIImage?) {
+        
+        DispatchQueue.main.async {
+            guard let image = image else { return }
+            self.images.append(image)
+            self.photosCollectionView.reloadData()
+        }
     }
 }
