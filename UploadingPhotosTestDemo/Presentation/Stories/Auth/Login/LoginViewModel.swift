@@ -13,7 +13,7 @@ import FirebaseAuth
 
 class LoginViewModel {
     
-    // MARK: rx properties
+    // MARK: Rx properties
     var isSignedInViaEmail: BehaviorRelay<(Bool, AuthDataResult?, Error?)> = BehaviorRelay(value: (false, nil, nil))
     var loginErrorHandling: BehaviorRelay<String> = BehaviorRelay(value: "")
     var enableButton: Observable<Bool>?

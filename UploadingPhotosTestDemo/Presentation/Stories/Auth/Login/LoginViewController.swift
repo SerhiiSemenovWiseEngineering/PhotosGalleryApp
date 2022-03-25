@@ -32,28 +32,8 @@ class LoginViewController: UIViewController, Alertable {
     private func configureUI() {
         
         configureScreen()
-        loginWithEmail()
         navigationBar()
         configureLoginButton()
-    }
-    
-    // MARK: Functions
-    private func loginWithEmail() {
-        loginViewModel.signInWithEmail(email: emailTextField.rx.text.asObservable(),
-                                       password: passwordTextField.rx.text.asObservable(),
-                                       didPressSignInButton: signInButton.rx.tap.asObservable())
-        
-        loginViewModel.isSignedInViaEmail
-            .skip(1)
-            .bind { [weak self] (succes, user, error) in
-                guard let self = self else { return }
-                if succes {
-                    self.dismiss(animated: true)
-                } else {
-                    self.displayMessage("Error", msg: error?.localizedDescription, handler: nil)
-                }
-            }
-            .disposed(by: disposeBag)
     }
     
     private func navigationBar() {
@@ -71,6 +51,8 @@ class LoginViewController: UIViewController, Alertable {
     
     // MARK: - Configure VM
     private func configureVM() {
+        loginWithEmail()
+        
         loginViewModel.enableButton?
             .bind { [weak self] isEnabled in
                 guard let self = self else { return }
@@ -91,6 +73,24 @@ class LoginViewController: UIViewController, Alertable {
             .bind { [weak self] (error) in
                 guard let self = self else { return }
                 self.displayMessage("Error", msg: error, handler: nil)
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func loginWithEmail() {
+        loginViewModel.signInWithEmail(email: emailTextField.rx.text.asObservable(),
+                                       password: passwordTextField.rx.text.asObservable(),
+                                       didPressSignInButton: signInButton.rx.tap.asObservable())
+        
+        loginViewModel.isSignedInViaEmail
+            .skip(1)
+            .bind { [weak self] (succes, user, error) in
+                guard let self = self else { return }
+                if succes {
+                    self.dismiss(animated: true)
+                } else {
+                    self.displayMessage("Error", msg: error?.localizedDescription, handler: nil)
+                }
             }
             .disposed(by: disposeBag)
     }

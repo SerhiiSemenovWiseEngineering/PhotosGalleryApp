@@ -10,18 +10,17 @@ import FirebaseAuth
 
 class PhotoGalleryViewController: UIViewController, Alertable {
     
+    // MARK: - IBOutlets
+    @IBOutlet weak var photosCollectionView: UICollectionView!
+    
+    // MARK: - Properties
+    var handler: AuthStateDidChangeListenerHandle?
     let columnLayout = ColumnFlowLayout(
         cellsPerRow: 2,
         minimumInteritemSpacing: 10,
         minimumLineSpacing: 10,
         sectionInset: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     )
-    
-    // MARK: - IBOutlets
-    @IBOutlet weak var photosCollectionView: UICollectionView!
-    
-    // MARK: - Properties
-    var handler: AuthStateDidChangeListenerHandle?
     
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -37,11 +36,13 @@ class PhotoGalleryViewController: UIViewController, Alertable {
         
         Auth.auth().removeStateDidChangeListener(handler)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureUI()
         configureVM()
+        configureRX()
     }
     
     // MARK: - UI Configuration
@@ -54,6 +55,10 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     
     // MARK: - Configure VM
     private func configureVM() {
+        
+    }
+    
+    private func configureRX() {
         
     }
     
@@ -113,37 +118,12 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionViewCell", for: indexPath) as? GalleryCollectionViewCell else { return UICollectionViewCell() }
         
-        let image = resizeImage(image: UIImage(named: "CatImage")!, targetSize: CGSize(width: 100, height: 100))
+        guard let catImage = UIImage(named: "CatImage") else { return UICollectionViewCell() }
+        let image = catImage.resizeImage(targetSize: CGSize(width: 100, height: 100))
         cell.mainImageView.contentMode = .scaleAspectFit
         cell.mainImageView.image = image
         cell.nameLabel.text = "My home cat"
         
         return cell
-    }
-    
-    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
-        let size = image.size
-        
-        let widthRatio  = targetSize.width  / size.width
-        let heightRatio = targetSize.height / size.height
-        
-        // Figure out what our orientation is, and use that to form the rectangle
-        var newSize: CGSize
-        if(widthRatio > heightRatio) {
-            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-        } else {
-            newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
-        }
-        
-        // This is the rect that we've calculated out and this is what is actually used below
-        let rect = CGRect(origin: .zero, size: newSize)
-        
-        // Actually do the resizing to the rect using the ImageContext stuff
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-        image.draw(in: rect)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
     }
 }

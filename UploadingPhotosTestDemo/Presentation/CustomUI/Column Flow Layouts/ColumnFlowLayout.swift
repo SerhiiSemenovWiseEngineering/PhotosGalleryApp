@@ -10,8 +10,10 @@ import UIKit
 
 class ColumnFlowLayout: UICollectionViewFlowLayout {
 
+    // MARK: - Properties
     let cellsPerRow: Int
 
+    // MARK: - Lifecycle
     init(cellsPerRow: Int, minimumInteritemSpacing: CGFloat = 0, minimumLineSpacing: CGFloat = 0, sectionInset: UIEdgeInsets = .zero) {
         self.cellsPerRow = cellsPerRow
         super.init()
@@ -25,6 +27,7 @@ class ColumnFlowLayout: UICollectionViewFlowLayout {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Overrided functions
     override func prepare() {
         super.prepare()
 

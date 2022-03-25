@@ -39,6 +39,7 @@
 		8F46D8B227ECB391009C719D /* LoginViewModelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */; };
 		8F46D8B427ECB5C4009C719D /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B327ECB5C4009C719D /* Alertable.swift */; };
 		8FB7D4B327EDBF0800B0417D /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7D4B227EDBF0800B0417D /* ColumnFlowLayout.swift */; };
+		8FB7D4B527EDBFEF00B0417D /* UIImage+resizedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7D4B427EDBFEF00B0417D /* UIImage+resizedImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelConstants.swift; sourceTree = "<group>"; };
 		8F46D8B327ECB5C4009C719D /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		8FB7D4B227EDBF0800B0417D /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
+		8FB7D4B427EDBFEF00B0417D /* UIImage+resizedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resizedImage.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +277,7 @@
 			children = (
 				8F46D89727ECAB1F009C719D /* String+trimm.swift */,
 				8F1C68ED27ECD14900BD85C9 /* UIViewController+identifier.swift */,
+				8FB7D4B427EDBFEF00B0417D /* UIImage+resizedImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F46D8B427ECB5C4009C719D /* Alertable.swift in Sources */,
+				8FB7D4B527EDBFEF00B0417D /* UIImage+resizedImage.swift in Sources */,
 				8F1C68FA27ECF85C00BD85C9 /* GalleryCollectionViewCell.swift in Sources */,
 				8F46D89827ECAB1F009C719D /* String+trimm.swift in Sources */,
 				8F46D8B227ECB391009C719D /* LoginViewModelConstants.swift in Sources */,

@@ -9,14 +9,10 @@ import UIKit
 
 class GalleryCollectionViewCell: UICollectionViewCell, NibLoadable {
 
+    // MARK: - Properties
     static let reuseIdentifier = "GalleryCollectionViewCell"
     
+    // MARK: - IBOutlets
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
 }
