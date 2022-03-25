@@ -102,8 +102,15 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     }
     
     @objc func didTapAddButton(sender: AnyObject) {
-        ImagePicker.shared.presentPickerViewController(from: self)
-        ImagePicker.shared.delegate = self
+        if #available(iOS 14, *) {
+            ImagePicker.shared.presentPickerViewController(from: self, errorMessage: { [weak self] in
+                guard let self = self else { return }
+                self.displayError("You need to allow access to all photos in Settings")
+            })
+            ImagePicker.shared.delegate = self
+        } else {
+            displayError("Need to be higher than 14 iOS version")
+        }
     }
     
     @objc func didTapUploadButton(sender: AnyObject) {
