@@ -15,43 +15,45 @@ import FirebaseAuth
 class PhotoGalleryViewModel {
     
     // MARK: - Properties
-    private var galeryImagesValue: [GalleryImage] = []
+    var galeryImages: [GalleryImage] = []
     
     // MARK: - Outputs
-    var galeryImages = BehaviorRelay<[GalleryImage]>(value: [])
+    var updateUI = BehaviorRelay<Void>(value: ())
     var isLoading = BehaviorRelay<Bool>(value: false)
+    var uploadingErrorHandling: BehaviorRelay<String> = BehaviorRelay(value: "")
     
     // MARK: - Functions
     func appendImageToArray(image: UIImage) {
         let galeryImage = GalleryImage(image: image)
-        galeryImagesValue.append(galeryImage)
-        galeryImages.accept(galeryImagesValue)
+        galeryImages.append(galeryImage)
+        updateUI.accept(())
     }
     
     func uploadToFireBase() {
-        var counter = 0
         HUD.show(.progress)
         
-        galeryImages.value
-            .filter { $0.isLoaded != false }
+        galeryImages
+            .filter { !$0.isLoaded }
             .enumerated()
             .forEach { index, imageGalery in
                 
-                let reference = FIRFirestoreStorageService.shared.reference(to: "images/", name: imageGalery.name)
+                guard let path = Auth.auth().currentUser?.uid else { return }
+                let reference = FIRFirestoreStorageService.shared.reference(to: "\(path)/", name: imageGalery.name)
                 guard let data = imageGalery.image.jpegData(compressionQuality: 0.7) else { return }
                 reference.putData(data, metadata: nil) { [weak self] metadata, error in
                     guard let self = self else { return }
                     
                     if let error = error {
-                        print(error)
+                        self.uploadingErrorHandling.accept(error.localizedDescription)
                         HUD.hide()
                     }
                     
-                    self.galeryImagesValue[index].isLoaded.toggle()
-                    self.galeryImages.accept(self.galeryImagesValue)
+                    if let i = self.galeryImages.firstIndex(where: { $0.name == imageGalery.name}) {
+                        self.galeryImages[i].isLoaded.toggle()
+                        self.updateUI.accept(())
+                    }
                     
-                    counter += 1
-                    if (counter == self.galeryImages.value.count) {
+                    if self.galeryImages.filter({!$0.isLoaded }).count == 0 {
                         HUD.hide()
                     }
                 }
@@ -59,7 +61,7 @@ class PhotoGalleryViewModel {
     }
     
     func clearData() {
-        galeryImagesValue = []
-        galeryImages.accept(galeryImagesValue)
+        galeryImages = []
+        updateUI.accept(())
     }
 }

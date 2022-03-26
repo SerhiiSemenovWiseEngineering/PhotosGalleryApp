@@ -18,10 +18,8 @@ class GalleryCollectionViewCell: UICollectionViewCell, NibLoadable {
     
     // MARK: - Functions
     func configure(galeryImage: GalleryImage) {
-        if galeryImage.isLoaded {
-            mainImageView.layer.opacity = 0.5
-            actionIcon.image = UIImage(systemName: "icloud.and.arrow.up")
-        }
+        mainImageView.layer.opacity = galeryImage.isLoaded ? 0.5 : 1
+        actionIcon.image = galeryImage.isLoaded ? UIImage(systemName: "icloud.and.arrow.up") : UIImage(systemName: "")
         
         mainImageView.contentMode = .scaleAspectFit
         mainImageView.image = galeryImage.image

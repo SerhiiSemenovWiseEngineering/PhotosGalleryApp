@@ -62,13 +62,21 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     
     // MARK: - Configure VM
     private func configureVM() {
-        photoGalleryViewModel.galeryImages
-            .bind { [weak self] image in
+        photoGalleryViewModel.updateUI
+            .bind { [weak self] in
                 guard let self = self else { return }
                 
                 DispatchQueue.main.async {
                     self.photosCollectionView.reloadData()
                 }
+            }
+            .disposed(by: disposeBag)
+        
+        photoGalleryViewModel.uploadingErrorHandling
+            .skip(1)
+            .bind { [weak self] (error) in
+                guard let self = self else { return }
+                self.displayMessage("Error", msg: error, handler: nil)
             }
             .disposed(by: disposeBag)
     }
@@ -119,7 +127,7 @@ class PhotoGalleryViewController: UIViewController, Alertable {
             })
             ImagePicker.shared.delegate = self
         } else {
-            displayError("Need to be higher than 14 iOS version")
+            displayError("Your device need to be higher than 14 iOS version")
         }
     }
     
@@ -138,13 +146,13 @@ class PhotoGalleryViewController: UIViewController, Alertable {
 extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photoGalleryViewModel.galeryImages.value.count
+        return photoGalleryViewModel.galeryImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionViewCell", for: indexPath) as? GalleryCollectionViewCell else { return UICollectionViewCell() }
         
-        let galeryImage = photoGalleryViewModel.galeryImages.value[indexPath.row]
+        let galeryImage = photoGalleryViewModel.galeryImages[indexPath.row]
         cell.configure(galeryImage: galeryImage)
         
         return cell

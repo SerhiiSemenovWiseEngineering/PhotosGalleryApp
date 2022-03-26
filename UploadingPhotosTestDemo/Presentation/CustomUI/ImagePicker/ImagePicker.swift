@@ -35,11 +35,7 @@ class ImagePicker: NSObject {
     
     func requestImagePermission(success: @escaping GenericBlock, error: @escaping GenericBlock) {
         let cameraAuthStatus: PHAuthorizationStatus!
-        if #available(iOS 14, *) {
-            cameraAuthStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-        } else {
-            cameraAuthStatus = PHPhotoLibrary.authorizationStatus()
-        }
+        cameraAuthStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
         switch cameraAuthStatus {
         case .authorized:
             success()
@@ -48,28 +44,15 @@ class ImagePicker: NSObject {
         case .denied:
             error()
         case .notDetermined:
-            if #available(iOS 14, *) {
-                PHPhotoLibrary.requestAuthorization(for: .readWrite, handler: { (status) in
-                    if status == .authorized {
-                        success()
-                    } else if status == .limited {
-                        success()
-                    } else if status == .denied {
-                        error()
-                    }
-                })
-            }
-            else {
-                PHPhotoLibrary.requestAuthorization({ (status) in
-                    if status == .authorized {
-                        success()
-                    } else if status == .limited {
-                        success()
-                    } else if status == .denied {
-                        error()
-                    }
-                })
-            }
+            PHPhotoLibrary.requestAuthorization(for: .readWrite, handler: { (status) in
+                if status == .authorized {
+                    success()
+                } else if status == .limited {
+                    success()
+                } else if status == .denied {
+                    error()
+                }
+            })
         default:
             print("None")
         }
