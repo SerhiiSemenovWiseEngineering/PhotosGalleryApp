@@ -7,6 +7,8 @@
 
 import UIKit
 import FirebaseAuth
+import RxSwift
+import RxCocoa
 
 class PhotoGalleryViewController: UIViewController, Alertable {
     
@@ -14,8 +16,10 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     @IBOutlet weak var photosCollectionView: UICollectionView!
     
     // MARK: - Properties
-    var images: [UIImage] = []
-    var handler: AuthStateDidChangeListenerHandle?
+    private var photoGalleryViewModel = PhotoGalleryViewModel()
+    private var handler: AuthStateDidChangeListenerHandle?
+    private let disposeBag = DisposeBag()
+    
     let columnLayout = ColumnFlowLayout(
         cellsPerRow: 2,
         minimumInteritemSpacing: 10,
@@ -23,11 +27,14 @@ class PhotoGalleryViewController: UIViewController, Alertable {
         sectionInset: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     )
     
+    
     // MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
-        handler = Auth.auth().addStateDidChangeListener { auth, user in
+        handler = Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+            guard let self = self else { return }
             if user == nil {
                 AuthRouter.showLoginVC(from: self)
+                self.photoGalleryViewModel.clearData()
             }
         }
     }
@@ -43,7 +50,6 @@ class PhotoGalleryViewController: UIViewController, Alertable {
 
         configureUI()
         configureVM()
-        configureRX()
     }
     
     // MARK: - UI Configuration
@@ -56,11 +62,15 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     
     // MARK: - Configure VM
     private func configureVM() {
-        
-    }
-    
-    private func configureRX() {
-        
+        photoGalleryViewModel.galeryImages
+            .bind { [weak self] image in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    self.photosCollectionView.reloadData()
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     // MARK: Functions
@@ -76,7 +86,7 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     }
     
     private func navigationBar() {
-        title = "Photo Galery"
+        title = "Photo Gallery"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let gearImage = UIImage(systemName: "gear")
@@ -114,24 +124,28 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     }
     
     @objc func didTapUploadButton(sender: AnyObject) {
-        print("Upload")
+        let alertAction = UIAlertAction(title: "Upload", style: .default) { [weak self] _ in
+            guard let self = self else { return }
+            self.photoGalleryViewModel.uploadToFireBase()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        displayMessage("Upload Photos", msg: nil, actions: alertAction, cancelAction, handler: nil)
     }
 }
 
 extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return photoGalleryViewModel.galeryImages.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionViewCell", for: indexPath) as? GalleryCollectionViewCell else { return UICollectionViewCell() }
         
-        let image = images[indexPath.row]
-//        let image = catImage.resizeImage(targetSize: CGSize(width: 100, height: 100))
-        cell.mainImageView.contentMode = .scaleAspectFit
-        cell.mainImageView.image = image
-        cell.nameLabel.text = "My home cat"
+        let galeryImage = photoGalleryViewModel.galeryImages.value[indexPath.row]
+        cell.configure(galeryImage: galeryImage)
         
         return cell
     }
@@ -140,11 +154,7 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
 extension PhotoGalleryViewController: ImagePickerDelegate {
     
     func didSelect(image: UIImage?) {
-        
-        DispatchQueue.main.async {
-            guard let image = image else { return }
-            self.images.append(image)
-            self.photosCollectionView.reloadData()
-        }
+        guard let image = image else { return }
+        photoGalleryViewModel.appendImageToArray(image: image)
     }
 }

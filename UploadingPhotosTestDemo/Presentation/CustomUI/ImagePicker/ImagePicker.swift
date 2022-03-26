@@ -25,7 +25,11 @@ class ImagePicker: NSObject {
     func presentPickerViewController(from viewController: UIViewController, errorMessage: @escaping GenericBlock) {
         requestImagePermission(success: { [weak self] in
             guard let self = self else { return }
-            self.generatePickerViewController(from: viewController)
+            
+            DispatchQueue.main.async {
+                self.generatePickerViewController(from: viewController)
+            }
+            
         }, error: errorMessage)
     }
     

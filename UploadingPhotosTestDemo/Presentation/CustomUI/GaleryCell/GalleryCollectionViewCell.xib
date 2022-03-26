@@ -21,24 +21,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l3F-Sd-dNv">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="107"/>
+                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZI-AE-mnQ">
-                                <rect key="frame" x="0.0" y="109" width="128" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SfV-Os-3cQ">
+                                <rect key="frame" x="88" y="10" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="WD6-S8-unS"/>
+                                    <constraint firstAttribute="width" constant="30" id="chM-p3-c88"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="l3F-Sd-dNv" firstAttribute="leading" secondItem="epd-hq-wpx" secondAttribute="leading" id="5Rk-rf-kPf"/>
-                            <constraint firstItem="lZI-AE-mnQ" firstAttribute="top" secondItem="l3F-Sd-dNv" secondAttribute="bottom" constant="2" id="9yM-Pe-ECa"/>
-                            <constraint firstAttribute="trailing" secondItem="lZI-AE-mnQ" secondAttribute="trailing" id="B11-hN-AhF"/>
-                            <constraint firstItem="lZI-AE-mnQ" firstAttribute="leading" secondItem="epd-hq-wpx" secondAttribute="leading" id="FdJ-LB-idt"/>
+                            <constraint firstAttribute="bottom" secondItem="l3F-Sd-dNv" secondAttribute="bottom" id="63A-GR-E4d"/>
+                            <constraint firstItem="SfV-Os-3cQ" firstAttribute="top" secondItem="epd-hq-wpx" secondAttribute="top" constant="10" id="AtI-gE-wn9"/>
                             <constraint firstAttribute="trailing" secondItem="l3F-Sd-dNv" secondAttribute="trailing" id="NOV-yn-wsm"/>
-                            <constraint firstAttribute="bottom" secondItem="lZI-AE-mnQ" secondAttribute="bottom" constant="2" id="TD2-I2-Kke"/>
-                            <constraint firstItem="lZI-AE-mnQ" firstAttribute="top" secondItem="l3F-Sd-dNv" secondAttribute="bottom" constant="2" id="a0L-7b-0Do"/>
+                            <constraint firstAttribute="trailing" secondItem="SfV-Os-3cQ" secondAttribute="trailing" constant="10" id="RXJ-Mu-N8J"/>
                             <constraint firstItem="l3F-Sd-dNv" firstAttribute="top" secondItem="epd-hq-wpx" secondAttribute="top" id="ebb-vU-zN6"/>
                         </constraints>
                     </view>
@@ -52,8 +51,8 @@
                 <constraint firstItem="epd-hq-wpx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="veC-Iq-3Gg"/>
             </constraints>
             <connections>
+                <outlet property="actionIcon" destination="SfV-Os-3cQ" id="8ho-2b-OFZ"/>
                 <outlet property="mainImageView" destination="l3F-Sd-dNv" id="W37-S9-8WX"/>
-                <outlet property="nameLabel" destination="lZI-AE-mnQ" id="pik-ii-IE5"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="100.44642857142857"/>
         </collectionViewCell>

@@ -13,10 +13,12 @@ import FirebaseAuth
 
 class LoginViewModel {
     
-    // MARK: Rx properties
+    // MARK: - Outputs
     var isSignedInViaEmail: BehaviorRelay<(Bool, AuthDataResult?, Error?)> = BehaviorRelay(value: (false, nil, nil))
     var loginErrorHandling: BehaviorRelay<String> = BehaviorRelay(value: "")
     var enableButton: Observable<Bool>?
+    
+    // MARK: - Properties
     var disposeBag = DisposeBag()
     
     // MARK: Lifecycle

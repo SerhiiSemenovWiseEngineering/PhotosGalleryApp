@@ -14,5 +14,16 @@ class GalleryCollectionViewCell: UICollectionViewCell, NibLoadable {
     
     // MARK: - IBOutlets
     @IBOutlet weak var mainImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var actionIcon: UIImageView!
+    
+    // MARK: - Functions
+    func configure(galeryImage: GalleryImage) {
+        if galeryImage.isLoaded {
+            mainImageView.layer.opacity = 0.5
+            actionIcon.image = UIImage(systemName: "icloud.and.arrow.up")
+        }
+        
+        mainImageView.contentMode = .scaleAspectFit
+        mainImageView.image = galeryImage.image
+    }
 }
