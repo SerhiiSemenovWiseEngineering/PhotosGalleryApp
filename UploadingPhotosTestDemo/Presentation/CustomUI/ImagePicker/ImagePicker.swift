@@ -11,6 +11,7 @@ import Photos
 import UIKit
 
 typealias GenericBlock = () -> Void
+typealias ImagesBlock = ([UIImage]) -> Void
 
 public protocol ImagePickerDelegate: AnyObject {
     func didSelect(image: UIImage?)
@@ -33,7 +34,47 @@ class ImagePicker: NSObject {
         }, error: errorMessage)
     }
     
-    func requestImagePermission(success: @escaping GenericBlock, error: @escaping GenericBlock) {
+    func getAllImagesFromGallery(completion: @escaping ImagesBlock, errorMessage: @escaping GenericBlock) {
+        requestImagePermission (success: { [weak self] in
+            guard let self = self else { return }
+            self.requestImages(completion: completion)
+        }, error: errorMessage)
+    }
+    
+    private func requestImages(completion: @escaping ImagesBlock) {
+        
+        var images = [UIImage]()
+        
+        let manager = PHImageManager.default()
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.isSynchronous = false
+        
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        
+        let results: PHFetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        if results.count > 0 {
+            for index in 0..<results.count {
+                let asset = results.object(at: index)
+                let size = CGSize(width: 700, height: 700)
+                manager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: requestOptions) { (image, _) in
+                    if let image = image {
+                        images.append(image)
+                    } else {
+                        print("error asset to image")
+                    }
+                    
+                    if images.count == results.count {
+                        completion(images)
+                    }
+                }
+            }
+        } else {
+            print("no photos to display")
+        }
+    }
+    
+    private func requestImagePermission(success: @escaping GenericBlock, error: @escaping GenericBlock) {
         let cameraAuthStatus: PHAuthorizationStatus!
         cameraAuthStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
         switch cameraAuthStatus {
@@ -58,7 +99,7 @@ class ImagePicker: NSObject {
         }
     }
     
-    func generatePickerViewController(from viewController: UIViewController) {
+    private func generatePickerViewController(from viewController: UIViewController) {
         var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         configuration.filter = .images
         configuration.selectionLimit = 0

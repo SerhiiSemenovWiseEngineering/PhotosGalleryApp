@@ -35,6 +35,8 @@ class PhotoGalleryViewController: UIViewController, Alertable {
             if user == nil {
                 AuthRouter.showLoginVC(from: self)
                 self.photoGalleryViewModel.clearData()
+            } else {
+                self.getImagesFromLibrary()
             }
         }
     }
@@ -93,20 +95,23 @@ class PhotoGalleryViewController: UIViewController, Alertable {
         photosCollectionView.register(GalleryCollectionViewCell.nib, forCellWithReuseIdentifier: GalleryCollectionViewCell.reuseIdentifier)
     }
     
+    private func getImagesFromLibrary() {
+        ImagePicker.shared.getAllImagesFromGallery { images in
+            self.photoGalleryViewModel.appendImagesToArray(images: images)
+        } errorMessage: { [weak self] in
+            guard let self = self else { return }
+            self.displayError("You need to allow access to all photos in Settings")
+        }
+    }
+    
     private func navigationBar() {
         title = "Photo Gallery"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let gearImage = UIImage(systemName: "gear")
-        let addImage = UIImage(systemName: "plus")
-        let uploadImage = UIImage(systemName: "icloud.and.arrow.up")
-        
         let systemButton = UIBarButtonItem(image: gearImage,  style: .plain, target: self, action: #selector(didTapSystemButton(sender:)))
-        let addButton   = UIBarButtonItem(image: addImage,  style: .plain, target: self, action: #selector(didTapAddButton(sender:)))
-        let uploadButton  = UIBarButtonItem(image: uploadImage,  style: .plain, target: self, action: #selector(didTapUploadButton(sender:)))
         
-        navigationItem.rightBarButtonItems = [uploadButton, addButton]
-        navigationItem.leftBarButtonItems = [systemButton]
+        navigationItem.rightBarButtonItems = [systemButton]
     }
     
     @objc func didTapSystemButton(sender: AnyObject) {
@@ -117,29 +122,6 @@ class PhotoGalleryViewController: UIViewController, Alertable {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
         displayMessage("Preferences", msg: nil, actions: alertAction, cancelAction, handler: nil, style: .actionSheet)
-    }
-    
-    @objc func didTapAddButton(sender: AnyObject) {
-        if #available(iOS 14, *) {
-            ImagePicker.shared.presentPickerViewController(from: self, errorMessage: { [weak self] in
-                guard let self = self else { return }
-                self.displayError("You need to allow access to all photos in Settings")
-            })
-            ImagePicker.shared.delegate = self
-        } else {
-            displayError("Your device need to be higher than 14 iOS version")
-        }
-    }
-    
-    @objc func didTapUploadButton(sender: AnyObject) {
-        let alertAction = UIAlertAction(title: "Upload", style: .default) { [weak self] _ in
-            guard let self = self else { return }
-            self.photoGalleryViewModel.uploadToFireBase()
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        displayMessage("Upload Photos", msg: nil, actions: alertAction, cancelAction, handler: nil)
     }
 }
 
@@ -156,13 +138,5 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
         cell.configure(galeryImage: galeryImage)
         
         return cell
-    }
-}
-
-extension PhotoGalleryViewController: ImagePickerDelegate {
-    
-    func didSelect(image: UIImage?) {
-        guard let image = image else { return }
-        photoGalleryViewModel.appendImageToArray(image: image)
     }
 }

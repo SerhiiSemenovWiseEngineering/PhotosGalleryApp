@@ -23,13 +23,19 @@ class PhotoGalleryViewModel {
     var uploadingErrorHandling: BehaviorRelay<String> = BehaviorRelay(value: "")
     
     // MARK: - Functions
-    func appendImageToArray(image: UIImage) {
-        let galeryImage = GalleryImage(image: image)
-        galeryImages.append(galeryImage)
+    func appendImagesToArray(images: [UIImage]) {
+        let galeryImage = images.map { GalleryImage(image: $0) }
+        galeryImages = galeryImage
         updateUI.accept(())
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            
+            self.uploadToFireBase()
+        }
     }
     
-    func uploadToFireBase() {
+    private func uploadToFireBase() {
         HUD.show(.progress)
         
         galeryImages
