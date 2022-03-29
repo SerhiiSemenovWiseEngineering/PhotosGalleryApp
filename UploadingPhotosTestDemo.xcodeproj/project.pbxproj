@@ -25,7 +25,6 @@
 		8F46D86527EC7B7F009C719D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F46D86327EC7B7F009C719D /* LaunchScreen.storyboard */; };
 		8F46D87A27EC7D1B009C719D /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D87927EC7D1B009C719D /* NibLoadable.swift */; };
 		8F46D87C27EC7D55009C719D /* XibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D87B27EC7D55009C719D /* XibView.swift */; };
-		8F46D87E27EC84C8009C719D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F46D87D27EC84C8009C719D /* GoogleService-Info.plist */; };
 		8F46D88127EC85C4009C719D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D88027EC85C4009C719D /* FirebaseAuth */; };
 		8F46D88327EC85C4009C719D /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D88227EC85C4009C719D /* FirebaseAuthCombine-Community */; };
 		8F46D88527EC85C4009C719D /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D88427EC85C4009C719D /* FirebaseDatabase */; };
@@ -39,6 +38,7 @@
 		8F46D8B027ECB307009C719D /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D8AF27ECB307009C719D /* PKHUD */; };
 		8F46D8B227ECB391009C719D /* LoginViewModelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */; };
 		8F46D8B427ECB5C4009C719D /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B327ECB5C4009C719D /* Alertable.swift */; };
+		8FB75E1627F1EDFD00D3ADCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FB75E1527F1EDFD00D3ADCF /* GoogleService-Info.plist */; };
 		8FB7D4B327EDBF0800B0417D /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7D4B227EDBF0800B0417D /* ColumnFlowLayout.swift */; };
 		8FB7D4B527EDBFEF00B0417D /* UIImage+resizedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7D4B427EDBFEF00B0417D /* UIImage+resizedImage.swift */; };
 		8FB7D4B827EDDC9700B0417D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7D4B727EDDC9700B0417D /* ImagePicker.swift */; };
@@ -64,12 +64,12 @@
 		8F46D86627EC7B7F009C719D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F46D87927EC7D1B009C719D /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		8F46D87B27EC7D55009C719D /* XibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XibView.swift; sourceTree = "<group>"; };
-		8F46D87D27EC84C8009C719D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8F46D89027EC8B08009C719D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8F46D89527EC9BA3009C719D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8F46D89727ECAB1F009C719D /* String+trimm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trimm.swift"; sourceTree = "<group>"; };
 		8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelConstants.swift; sourceTree = "<group>"; };
 		8F46D8B327ECB5C4009C719D /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		8FB75E1527F1EDFD00D3ADCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8FB7D4B227EDBF0800B0417D /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		8FB7D4B427EDBFEF00B0417D /* UIImage+resizedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resizedImage.swift"; sourceTree = "<group>"; };
 		8FB7D4B727EDDC9700B0417D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 				8F46D87627EC7CD7009C719D /* Util */,
 				8F46D86127EC7B7F009C719D /* Assets.xcassets */,
 				8F46D86327EC7B7F009C719D /* LaunchScreen.storyboard */,
-				8F46D87D27EC84C8009C719D /* GoogleService-Info.plist */,
+				8FB75E1527F1EDFD00D3ADCF /* GoogleService-Info.plist */,
 				8F46D86627EC7B7F009C719D /* Info.plist */,
 			);
 			path = UploadingPhotosTestDemo;
@@ -393,9 +393,9 @@
 				8F1C68E627ECCD2400BD85C9 /* PhotoGalleryViewController.storyboard in Resources */,
 				8F1C68FB27ECF85C00BD85C9 /* GalleryCollectionViewCell.xib in Resources */,
 				8F46D86527EC7B7F009C719D /* LaunchScreen.storyboard in Resources */,
-				8F46D87E27EC84C8009C719D /* GoogleService-Info.plist in Resources */,
 				8F46D86227EC7B7F009C719D /* Assets.xcassets in Resources */,
 				8F46D86027EC7B7C009C719D /* Auth.storyboard in Resources */,
+				8FB75E1627F1EDFD00D3ADCF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,25 +570,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 8X6TVFYMWJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UploadingPhotosTestDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PhotosGalleryApp;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Granting access will allow photos to be saved and imported.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = PhotoGalleryViewController;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = UploadingPhotosTestIdentifier.UploadingPhotosTestDemo;
+				MARKETING_VERSION = 1.03;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uploadingPhotosTestIdentifier.UploadingPhotosTestDemo.wise.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -597,25 +603,31 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = 8X6TVFYMWJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UploadingPhotosTestDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PhotosGalleryApp;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Granting access will allow photos to be saved and imported.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = PhotoGalleryViewController;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = UploadingPhotosTestIdentifier.UploadingPhotosTestDemo;
+				MARKETING_VERSION = 1.03;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uploadingPhotosTestIdentifier.UploadingPhotosTestDemo.wise.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

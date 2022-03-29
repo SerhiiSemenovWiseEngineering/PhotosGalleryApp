@@ -116,7 +116,7 @@ class PhotoGalleryViewController: UIViewController, Alertable {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        displayMessage("Preferences", msg: nil, actions: alertAction, cancelAction, handler: nil)
+        displayMessage("Preferences", msg: nil, actions: alertAction, cancelAction, handler: nil, style: .actionSheet)
     }
     
     @objc func didTapAddButton(sender: AnyObject) {

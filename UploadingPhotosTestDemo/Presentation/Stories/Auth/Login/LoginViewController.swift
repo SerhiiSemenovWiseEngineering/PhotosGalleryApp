@@ -31,6 +31,7 @@ class LoginViewController: UIViewController, Alertable {
     // MARK: - UI Configuration
     private func configureUI() {
         
+        configureEmailAndPasswordTextField()
         configureScreen()
         navigationBar()
         configureLoginButton()
@@ -49,6 +50,11 @@ class LoginViewController: UIViewController, Alertable {
         isModalInPresentation = true
     }
     
+    private func configureEmailAndPasswordTextField() {
+        emailTextField.placeholder = "Email"
+        passwordTextField.placeholder = "Password"
+    }
+    
     // MARK: - Configure VM
     private func configureVM() {
         loginWithEmail()
@@ -56,11 +62,7 @@ class LoginViewController: UIViewController, Alertable {
         loginViewModel.enableButton?
             .bind { [weak self] isEnabled in
                 guard let self = self else { return }
-                if isEnabled {
-                    self.signInButton.backgroundColor = UIColor.link
-                } else {
-                    self.signInButton.backgroundColor = UIColor.lightGray
-                }
+                self.signInButton.backgroundColor = isEnabled ? UIColor.link : UIColor.lightGray
             }
             .disposed(by: disposeBag)
         

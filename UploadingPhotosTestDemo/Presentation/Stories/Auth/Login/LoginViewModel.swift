@@ -90,9 +90,18 @@ class LoginViewModel {
                     return
                 }
 
-                Auth.auth().signIn(withEmail: login, password: password) { [unowned self] (user, error) in
-                    HUD.hide()
-                    self.isSignedInViaEmail.accept((user != nil, user, error))
+                Auth.auth().fetchSignInMethods(forEmail: login) { result, error  in
+                    if result != nil {
+                        Auth.auth().signIn(withEmail: login, password: password) { [unowned self] (user, error) in
+                            HUD.hide()
+                            self.isSignedInViaEmail.accept((user != nil, user, error))
+                        }
+                    } else {
+                        Auth.auth().createUser(withEmail: login, password: password) { [unowned self] (user, error) in
+                            HUD.hide()
+                            self.isSignedInViaEmail.accept((user != nil, user, error))
+                        }
+                    }
                 }
             }
             .disposed(by: disposeBag)

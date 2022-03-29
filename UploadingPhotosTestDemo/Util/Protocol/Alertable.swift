@@ -22,8 +22,9 @@ extension Alertable where Self: UIViewController {
     func displayMessage(_ title: String,
                         msg: String?,
                         actions: UIAlertAction?...,
-        handler: ((UIAlertAction) -> Void)?) {
-        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        handler: ((UIAlertAction) -> Void)?,
+                        style: UIAlertController.Style = .alert) {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: style)
         if actions.isEmpty || (actions.count == 1 && actions[0] == nil) {
             let dismissAction = UIAlertAction(title: "OK", style: .default, handler: handler)
             alertController.addAction(dismissAction)
