@@ -100,7 +100,9 @@ class PhotoGalleryViewController: UIViewController, Alertable {
             self.photoGalleryViewModel.appendImagesToArray(images: images)
         } errorMessage: { [weak self] in
             guard let self = self else { return }
-            self.displayError("You need to allow access to all photos in Settings")
+            DispatchQueue.main.async {
+                self.displayError("You need to allow access to all photos in Settings")
+            }
         }
     }
     
