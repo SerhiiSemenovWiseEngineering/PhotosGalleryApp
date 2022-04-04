@@ -135,7 +135,7 @@ class PhotoGalleryViewController: UIViewController, Alertable {
         let settingsAction = self.settingsAction()
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        displayMessage("Preferences", msg: nil, actions: alertAction, settingsAction, cancelAction, handler: nil, style: .actionSheet)
+        displayMessage("Preferences", msg: nil, actions: settingsAction, alertAction, cancelAction, handler: nil, style: .actionSheet)
     }
 }
 
