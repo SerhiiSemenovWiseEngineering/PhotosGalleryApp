@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import PhotosUI
 import Photos
 import UIKit
 
 typealias GenericBlock = () -> Void
 typealias ImagesBlock = ([UIImage]) -> Void
+typealias ErrorBlock = (String?) -> Void
 
 public protocol ImagePickerDelegate: AnyObject {
     func didSelect(image: UIImage?)
@@ -23,25 +23,14 @@ class ImagePicker: NSObject {
     private override init() {}
     static let shared = ImagePicker()
     
-    func presentPickerViewController(from viewController: UIViewController, errorMessage: @escaping GenericBlock) {
-        requestImagePermission(success: { [weak self] in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                self.generatePickerViewController(from: viewController)
-            }
-            
-        }, error: errorMessage)
-    }
-    
-    func getAllImagesFromGallery(completion: @escaping ImagesBlock, errorMessage: @escaping GenericBlock) {
+    func getAllImagesFromGallery(completion: @escaping ImagesBlock, errorMessage: @escaping ErrorBlock) {
         requestImagePermission (success: { [weak self] in
             guard let self = self else { return }
-            self.requestImages(completion: completion)
+            self.requestImages(completion: completion, error: errorMessage)
         }, error: errorMessage)
     }
     
-    private func requestImages(completion: @escaping ImagesBlock) {
+    private func requestImages(completion: @escaping ImagesBlock, error: @escaping ErrorBlock) {
         
         var images = [UIImage]()
         
@@ -70,59 +59,47 @@ class ImagePicker: NSObject {
                 }
             }
         } else {
-            print("no photos to display")
+            error("No photos to display")
         }
     }
     
-    private func requestImagePermission(success: @escaping GenericBlock, error: @escaping GenericBlock) {
-        let cameraAuthStatus: PHAuthorizationStatus!
-        cameraAuthStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-        switch cameraAuthStatus {
+    private func requestImagePermission(success: @escaping GenericBlock, error: @escaping ErrorBlock) {
+        let authStatus: PHAuthorizationStatus!
+        if #available(iOS 14, *) {
+            authStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+        } else {
+            authStatus = PHPhotoLibrary.authorizationStatus()
+        }
+        switch authStatus {
         case .authorized:
             success()
         case .limited:
             success()
         case .denied:
-            error()
+            error("You need to allow access to all photos in Settings")
         case .notDetermined:
-            PHPhotoLibrary.requestAuthorization(for: .readWrite, handler: { (status) in
-                if status == .authorized {
-                    success()
-                } else if status == .limited {
-                    success()
-                } else if status == .denied {
-                    error()
-                }
-            })
+            if #available(iOS 14, *) {
+                PHPhotoLibrary.requestAuthorization(for: .readWrite, handler: { (status) in
+                    if status == .authorized {
+                        success()
+                    } else if status == .limited {
+                        success()
+                    } else if status == .denied {
+                        error("You need to allow access to all photos in Settings")
+                    }
+                })
+            } else {
+                PHPhotoLibrary.requestAuthorization({ (status) in
+                    if status == .authorized {
+                        success()
+                    }
+                    else {
+                        error("You need to allow access to all photos in Settings")
+                    }
+                })
+            }
         default:
             print("None")
-        }
-    }
-    
-    private func generatePickerViewController(from viewController: UIViewController) {
-        var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
-        configuration.filter = .images
-        configuration.selectionLimit = 0
-        configuration.preferredAssetRepresentationMode = .current
-     
-        let photoPickerViewController = PHPickerViewController(configuration: configuration)
-        photoPickerViewController.delegate = self
-        viewController.present(photoPickerViewController, animated: true)
-    }
-}
-
-extension ImagePicker: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.dismiss(animated: true)
-        let itemProviders = results.map(\.itemProvider)
-
-        for itemProvider in itemProviders {
-            itemProvider.loadDataRepresentation(forTypeIdentifier: "public.image") { [unowned self] data, error in
-                guard let data = data else { return }
-                guard let image = UIImage(data: data) else { return }
-                
-                self.delegate?.didSelect(image: image)
-            }
         }
     }
 }

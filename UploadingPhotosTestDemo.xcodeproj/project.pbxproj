@@ -38,6 +38,7 @@
 		8F46D8B027ECB307009C719D /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 8F46D8AF27ECB307009C719D /* PKHUD */; };
 		8F46D8B227ECB391009C719D /* LoginViewModelConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */; };
 		8F46D8B427ECB5C4009C719D /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F46D8B327ECB5C4009C719D /* Alertable.swift */; };
+		8F97D98727FB067600159BAC /* UIViewController+navigateToSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F97D98627FB067600159BAC /* UIViewController+navigateToSettings.swift */; };
 		8FB75E1627F1EDFD00D3ADCF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8FB75E1527F1EDFD00D3ADCF /* GoogleService-Info.plist */; };
 		8FB7D4B327EDBF0800B0417D /* ColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7D4B227EDBF0800B0417D /* ColumnFlowLayout.swift */; };
 		8FB7D4B527EDBFEF00B0417D /* UIImage+resizedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7D4B427EDBFEF00B0417D /* UIImage+resizedImage.swift */; };
@@ -69,6 +70,7 @@
 		8F46D89727ECAB1F009C719D /* String+trimm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+trimm.swift"; sourceTree = "<group>"; };
 		8F46D8B127ECB391009C719D /* LoginViewModelConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelConstants.swift; sourceTree = "<group>"; };
 		8F46D8B327ECB5C4009C719D /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		8F97D98627FB067600159BAC /* UIViewController+navigateToSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+navigateToSettings.swift"; sourceTree = "<group>"; };
 		8FB75E1527F1EDFD00D3ADCF /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		8FB7D4B227EDBF0800B0417D /* ColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnFlowLayout.swift; sourceTree = "<group>"; };
 		8FB7D4B427EDBFEF00B0417D /* UIImage+resizedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resizedImage.swift"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				8F46D89727ECAB1F009C719D /* String+trimm.swift */,
 				8F1C68ED27ECD14900BD85C9 /* UIViewController+identifier.swift */,
 				8FB7D4B427EDBFEF00B0417D /* UIImage+resizedImage.swift */,
+				8F97D98627FB067600159BAC /* UIViewController+navigateToSettings.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				8F46D89127EC8B08009C719D /* LoginViewController.swift in Sources */,
 				8F46D85B27EC7B7C009C719D /* SceneDelegate.swift in Sources */,
 				8F1C68EC27ECD0FE00BD85C9 /* AuthRouter.swift in Sources */,
+				8F97D98727FB067600159BAC /* UIViewController+navigateToSettings.swift in Sources */,
 				8FB7D4BB27EE057B00B0417D /* PhotoGalleryViewModel.swift in Sources */,
 				8F46D89627EC9BA3009C719D /* LoginViewModel.swift in Sources */,
 				8F1C68E927ECCDC800BD85C9 /* PhotoGalleryViewController.swift in Sources */,
@@ -572,7 +576,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8X6TVFYMWJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UploadingPhotosTestDemo/Info.plist;
@@ -584,11 +588,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.05;
+				MARKETING_VERSION = 1.06;
 				PRODUCT_BUNDLE_IDENTIFIER = com.uploadingPhotosTestIdentifier.UploadingPhotosTestDemo.wise.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -605,7 +610,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 8X6TVFYMWJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UploadingPhotosTestDemo/Info.plist;
@@ -617,11 +622,12 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.05;
+				MARKETING_VERSION = 1.06;
 				PRODUCT_BUNDLE_IDENTIFIER = com.uploadingPhotosTestIdentifier.UploadingPhotosTestDemo.wise.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -63,6 +63,7 @@ class LoginViewController: UIViewController, Alertable {
             .bind { [weak self] isEnabled in
                 guard let self = self else { return }
                 self.signInButton.backgroundColor = isEnabled ? UIColor.link : UIColor.lightGray
+                self.signInButton.tintColor = isEnabled ? UIColor.white : UIColor.darkGray
             }
             .disposed(by: disposeBag)
         

@@ -78,7 +78,10 @@ class PhotoGalleryViewController: UIViewController, Alertable {
             .skip(1)
             .bind { [weak self] (error) in
                 guard let self = self else { return }
-                self.displayMessage("Error", msg: error, handler: nil)
+                
+                DispatchQueue.main.async {
+                    self.displayMessage("Error", msg: error, handler: nil)
+                }
             }
             .disposed(by: disposeBag)
     }
@@ -98,10 +101,19 @@ class PhotoGalleryViewController: UIViewController, Alertable {
     private func getImagesFromLibrary() {
         ImagePicker.shared.getAllImagesFromGallery { images in
             self.photoGalleryViewModel.appendImagesToArray(images: images)
-        } errorMessage: { [weak self] in
+        } errorMessage: { [weak self] error in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                self.displayError("You need to allow access to all photos in Settings")
+                if let error = error {
+                    let settingsAction = self.settingsAction()
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                    self.displayMessage("Important",
+                                        msg: error,
+                                        actions: settingsAction,
+                                        cancelAction,
+                                        handler: nil,
+                                        style: .alert)
+                }
             }
         }
     }
@@ -120,10 +132,10 @@ class PhotoGalleryViewController: UIViewController, Alertable {
         let alertAction = UIAlertAction(title: "Logout", style: .destructive) { _ in
             FIRFirebaseAuthService.shared.logoutUser()
         }
-        
+        let settingsAction = self.settingsAction()
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        displayMessage("Preferences", msg: nil, actions: alertAction, cancelAction, handler: nil, style: .actionSheet)
+        displayMessage("Preferences", msg: nil, actions: alertAction, settingsAction, cancelAction, handler: nil, style: .actionSheet)
     }
 }
 
@@ -134,7 +146,7 @@ extension PhotoGalleryViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCollectionViewCell", for: indexPath) as? GalleryCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCollectionViewCell.reuseIdentifier, for: indexPath) as? GalleryCollectionViewCell else { return UICollectionViewCell() }
         
         let galeryImage = photoGalleryViewModel.galeryImages[indexPath.row]
         cell.configure(galeryImage: galeryImage)
